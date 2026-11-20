@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="قائمة طعام أمجاد السدة، فرع الشوقية بمكة المكرمة. تصفّح الأطباق واختر الحجم والإضافات وجهّز طلبك عبر واتساب.">
+  <title>أمجاد السدة | منيو فرع الشوقية</title>
+  <link rel="icon" href="assets/logo.webp" type="image/webp">
+  <link rel="preload" href="assets/alexandria-arabic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#menu">الانتقال إلى المنيو</a>
+  <header class="header">
+    <div class="wrap header-inner">
+      <a href="#" class="brand" aria-label="أمجاد السدة، الصفحة الرئيسية">
+        <img src="assets/logo.webp" alt="" width="46" height="46">
+        <span><strong>أمجاد السدة</strong><small>فرع الشوقية</small></span>
+      </a>
+      <nav class="header-nav" aria-label="روابط الموقع">
+        <a href="#menu" class="selected">قائمة الطعام</a>
+        <a href="#contact">موقع الفرع</a>
+      </nav>
+      <button type="button" class="cart-toggle" id="open-cart" aria-label="فتح سلة الطلب">
+        <span data-icon="bag"></span><span>سلّة الطلب</span><b id="cart-count">0</b>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="menu-cover" aria-labelledby="hero-title">
+      <h1 id="hero-title" class="sr-only">قائمة طعام أمجاد السدة، فرع الشوقية</h1>
+      <div class="wrap cover-inner">
+        <div class="cover-frame">
+          <img src="assets/original-menu/menu-01.webp" alt="الغلاف الأصلي لقائمة الطعام" width="1194" height="1600" fetchpriority="high">
+        </div>
+        <a class="button button-primary cover-button" href="#menu"><span data-icon="menu"></span> تصفّح المنيو</a>
+      </div>
+    </section>
+
+    <section class="wrap menu" id="menu" aria-labelledby="menu-title">
+      <div class="menu-heading">
+        <div>
+          <h2 id="menu-title">قائمة الطعام</h2>
+          <p>اضغط على أي طبق لاختيار الحجم والإضافات.</p>
+        </div>
+        <div class="search">
+          <label class="sr-only" for="search-input">ابحث عن طبق</label>
+          <span data-icon="search"></span>
+          <input id="search-input" type="search" placeholder="ابحث عن طبق…" maxlength="80">
+        </div>
+      </div>
+      <div class="category-rail">
+        <div class="categories" id="categories" role="group" aria-label="أقسام قائمة الطعام"></div>
+        <div class="rail-controls">
+          <button type="button" id="category-prev" class="icon-button" aria-label="الأقسام السابقة"><span data-icon="chevron-right"></span></button>
+          <button type="button" id="category-next" class="icon-button" aria-label="الأقسام التالية"><span data-icon="chevron-left"></span></button>
+        </div>
+      </div>
+      <p id="results-status" class="sr-only" aria-live="polite"></p>
+      <div class="poster-gallery" id="dish-grid"></div>
+      <noscript><p>يرجى تفعيل JavaScript لعرض الأطباق وتجهيز الطلب.</p></noscript>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="wrap footer-inner">
+      <div>
+        <a class="brand" href="#">
+          <img src="assets/logo.webp" alt="" width="46" height="46">
+          <span><strong>أمجاد السدة</strong><small>فرع الشوقية، مكة المكرمة</small></span>
+        </a>
+        <p>شارع الدكتور كوشك، بجانب البنك الأهلي</p>
+      </div>
+      <div class="footer-links">
+        <a class="button button-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=21.3764618%2C39.7960904" target="_blank" rel="noopener"><span data-icon="pin"></span> موقع الفرع</a>
+        <a class="button button-secondary" href="tel:+966547050244"><span data-icon="phone"></span><bdi dir="ltr">054 705 0244</bdi></a>
+      </div>
+    </div>
+  </footer>
+
+  <dialog id="dish-dialog" class="dialog dish-dialog" aria-labelledby="dish-title">
+    <button type="button" class="icon-button dialog-close" data-close aria-label="إغلاق تفاصيل الطبق"><span data-icon="close"></span></button>
+    <div class="dialog-scroll" id="dish-content"></div>
+    <div class="dialog-footer">
+      <div class="stepper" aria-label="الكمية">
+        <button type="button" id="dish-decrease" aria-label="تقليل الكمية" disabled><span data-icon="minus"></span></button>
+        <output id="dish-quantity" aria-live="polite">1</output>
+        <button type="button" id="dish-increase" aria-label="زيادة الكمية"><span data-icon="plus"></span></button>
+      </div>
+      <button type="button" id="add-dish" class="button button-primary add-button"><span data-icon="bag"></span> أضف للسلة <span id="dish-total"></span></button>
+    </div>
+  </dialog>
+
+  <dialog id="cart-dialog" class="dialog cart-dialog" aria-labelledby="cart-title">
+    <div class="cart-heading">
+      <div><h2 id="cart-title">سلّة طلبك</h2><p>أمجاد السدة · فرع الشوقية</p></div>
+      <button type="button" class="icon-button" data-close aria-label="إغلاق السلة"><span data-icon="close"></span></button>
+    </div>
+    <div class="dialog-scroll cart-scroll" id="cart-content"></div>
+    <div class="dialog-footer cart-footer" id="cart-footer" hidden>
+      <label class="order-note" for="order-note">ملاحظات الطلب <span>اختياري</span></label>
+      <textarea id="order-note" rows="2" maxlength="240" placeholder="مثال: إضافة ملاعق للطلب"></textarea>
+      <div class="cart-total-row"><span>مجموع الأطباق</span><strong id="cart-total"></strong></div>
+      <a id="checkout" class="button button-primary checkout" target="_blank" rel="noopener"><span data-icon="whatsapp"></span> متابعة الطلب عبر واتساب</a>
+      <p class="checkout-note">أرسل الرسالة في واتساب ليؤكّد الفرع الطلب والتوصيل.</p>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
